@@ -8,7 +8,7 @@ namespace CS322_DZ08
 {
     interface FacebookUserDao
     {
-        void AddFacebookUser(FacebookUser facebookUser);
+        bool AddFacebookUser(FacebookUser facebookUser);
         List<FacebookUser> GetAllFacebookUsers();
     }
 }

@@ -10,6 +10,7 @@ namespace CS322_DZ08
 {
     public partial class _Default : Page
     {
+        FacebookUserDao facebookUserDao = new FacebookUserDaoImpl();
         protected void Page_Load(object sender, EventArgs e)
         {
             
@@ -22,10 +23,26 @@ namespace CS322_DZ08
             facebookUser.LastName = txtLastName.Value;
             facebookUser.MobileOrEmail = txtMobileOrEmail.Value;
             facebookUser.Password = txtPassword.Value;
-            facebookUser.Birthday = slctDay.Value + "." + slctMonth.Value + "." + slctYear.Value;
-            facebookUser.Gender = radioFemale.Checked ? radioFemale.Value : radioMale.Checked ? radioMale.Value : "Nije odabran pol.";
+            facebookUser.Birthday = slctDay.Value + "." + slctMonth.Value + "." + slctYear.Value + ".";
+            facebookUser.Gender = radioFemale.Checked ? radioFemale.Value : radioMale.Checked ? radioMale.Value : "";
 
-            txtMobileOrEmail.Value = facebookUser.FirstName + " " + facebookUser.LastName + " " + facebookUser.Gender;
+            if (facebookUserDao.AddFacebookUser(facebookUser))
+            {
+                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "FuncOK()", true);
+                txtFirstName.Value = "";
+                txtLastName.Value = "";
+                txtMobileOrEmail.Value = "";
+                txtPassword.Value = "";
+                slctDay.Value = "30";
+                slctMonth.Value = "3";
+                slctYear.Value = "1994";
+                radioFemale.Checked = false;
+                radioMale.Checked = false;
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "FuncNotOK()", true);
+            }
             
         }
     }

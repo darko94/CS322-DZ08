@@ -337,6 +337,14 @@ margin-bottom: 10px;
 
 
 </style>
+<script type="text/javascript" language="javascript">
+    function FuncOK() {
+        alert("Account successfully created!");
+    }
+    function FuncNotOK() {
+        alert("Something went wrong! Account not created.");
+    }
+</script>
 
 <div id="navwrapper">
   <div id="navbar"> <table class="tablewrapper">
@@ -496,7 +504,7 @@ margin-bottom: 10px;
           <br />
           <br />
           <div class="formbox">
-              <a href="About.aspx" class="databasebut bolder">Pogledaj podatke iz baze</a>
+              <a href="AllFacebookUsers.aspx" class="databasebut bolder">Pogledaj podatke iz baze</a>
           </div>
      </div>
     </div>

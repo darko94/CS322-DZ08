@@ -10,12 +10,12 @@ namespace CS322_DZ08
     {
         DBConnect db = new DBConnect();
 
-        public void AddFacebookUser(FacebookUser facebookUser)
+        public bool AddFacebookUser(FacebookUser facebookUser)
         {
             string query = "INSERT INTO facebook_user (first_name, last_name, mobile_or_email, password, birthday, gender) VALUES ('"
                 + facebookUser.FirstName + "', '" + facebookUser.LastName + "', '" + facebookUser.MobileOrEmail + "', '"
-                + facebookUser.Password + "', " + facebookUser.Birthday + "', " + facebookUser.Gender + ")";
-
+                + facebookUser.Password + "', '" + facebookUser.Birthday + "', '" + facebookUser.Gender + "')";
+            
             if (db.OpenConnection() == true)
             {
                 MySqlCommand cmd = new MySqlCommand(query, db.GetConnection());
@@ -23,6 +23,11 @@ namespace CS322_DZ08
                 cmd.ExecuteNonQuery();
 
                 db.CloseConnection();
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
